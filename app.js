@@ -4,52 +4,60 @@ const firstName = document.querySelector('.firstName');
 const lastName = document.querySelector('.lastName');
 const email = document.querySelector('.email');
 const password = document.querySelector('.password');
+const toggleIcon = document.querySelector('.toggle-icon');
 
-console.log(firstName);
-
-// console.log(firstName, lastName, email, password);
+// Event listener for the toggle icon
+toggleIcon.addEventListener('click', function () {
+    if (password.type === 'password') {
+        password.type = 'text';
+        toggleIcon.classList.add('visible');
+    } else {
+        password.type = 'password';
+        toggleIcon.classList.remove('visible');
+    }
+});
 
 form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const fName = firstName.value;
-  const lName = lastName.value;
-  const emailVal = email.value;
-  const passwordVal = password.value;
-  console.log(fName, lName, emailVal, passwordVal);
+    e.preventDefault();
+    const fName = firstName.value;
+    const lName = lastName.value;
+    const emailVal = email.value;
+    const passwordVal = password.value;
+    console.log(fName, lName, emailVal, passwordVal);
 
-  // Check first name
-  if (fName === '') {
-    firstName.classList.add('error');
-  } else {
-    firstName.classList.remove('error');
-  }
-  // Check last name
+    // Check first name
+    if (fName === '') {
+        firstName.classList.add('error');
+    } else {
+        firstName.classList.remove('error');
+    }
+    // Check last name
 
-  if (lName === '') {
-    lastName.classList.add('error');
-  } else {
-    lastName.classList.remove('error');
-  }
-  // Check email
+    if (lName === '') {
+        lastName.classList.add('error');
+    } else {
+        lastName.classList.remove('error');
+    }
+    // Check email
 
-  if (!validateEmail(emailVal) || emailVal === '') {
-    email.classList.add('error');
-  } else {
-    email.classList.remove('error');
-  }
+    if (!validateEmail(emailVal) || emailVal === '') {
+        email.classList.add('error');
+    } else {
+        email.classList.remove('error');
+    }
 
-  // Check password
+    // Check password
 
-  if (passwordVal === '') {
-    password.classList.add('error');
-  } else {
-    password.classList.remove('error');
-  }
+    if (passwordVal === '') {
+        password.classList.add('error');
+    } else {
+        password.classList.remove('error');
+    }
 });
 
 //Validate email
 function validateEmail(email) {
-  var re =
-    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(String(email).toLowerCase());
+    var re =
+        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
 }
