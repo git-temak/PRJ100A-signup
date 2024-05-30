@@ -93,8 +93,24 @@ input {
     margin-top: 0;
 }
 
-input.error {
+.input-wrapper.error input {
     border: 2px solid var(--red);
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-wrapper.error::after {
+    content: '\f06a';
+    font-family: FontAwesome;
+    position: absolute;
+    right: 10px;
+    top: 40%;
+    transform: translateY(-50%);
+    color: var(--red);
+    font-size: 18px;
+    pointer-events: none;
 }
 
 input:hover,
@@ -150,15 +166,15 @@ div.error-message {
 .toggle-icon {
     position: absolute;
     right: 10px;
-    top: 63%;
+    top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
     font-size: 18px;
     color: #888;
 }
 
-.toggle-icon.error {
-    top: 50%;
+.toggle-icon.hide {
+    display: none;
 }
 
 .toggle-icon::before {

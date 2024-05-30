@@ -43,22 +43,23 @@ form.addEventListener('submit', (e) => {
             errorMessage.classList.add('error-message');
             errorMessage.textContent = `${field.name} cannot be empty`;
             field.element.parentNode.insertBefore(errorMessage, field.element.nextSibling);
-            field.element.classList.add('error');
+            field.element.parentNode.classList.add('error');
             hasError = true;
 
-            // adjust password toggle icon position
+            // adjust password toggle icon
             if (field.name === 'Password') {
-                toggleIcon.classList.add('error');
+                toggleIcon.classList.add('hide');
             }
         } else if (field.name === 'Email' && !validateEmail(value)) {
             const errorMessage = document.createElement('div');
             errorMessage.classList.add('error-message');
             errorMessage.textContent = "Looks like this is not an email";
             field.element.parentNode.insertBefore(errorMessage, field.element.nextSibling);
-            field.element.classList.add('error');
+            field.element.parentNode.classList.add('error');
             hasError = true;
         } else {
-            field.element.classList.remove('error');
+            field.element.parentNode.classList.remove('error');
+            toggleIcon.classList.remove('hide');
         }
     });
 
@@ -71,7 +72,5 @@ form.addEventListener('submit', (e) => {
 function validateEmail(email) {
     var re =
         /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    let test =  re.test(String(email).toLowerCase());
-    console.log('test ', test);
-    return test;
+    return  re.test(String(email).toLowerCase());
 }
